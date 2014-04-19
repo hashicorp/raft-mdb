@@ -1,4 +1,4 @@
-raft-mdb
+raft-mdb  [![Build Status](https://travis-ci.org/hashicorp/raft-mdb.png)](https://travis-ci.org/hashicorp/raft-mdb)
 ========
 
 This repository provides the `raftmdb` package. The package exports the
