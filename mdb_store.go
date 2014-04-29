@@ -235,12 +235,28 @@ func (m *MDBStore) DeleteRange(minIdx, maxIdx uint64) error {
 	if err != nil {
 		return err
 	}
+	defer tx.Abort()
 
+	// Hack around an LMDB bug by running the delete multiple
+	// times until there are no further rows.
+	var num int
+DELETE:
+	num, err = m.innerDeleteRange(tx, dbis, minIdx, maxIdx)
+	if err != nil {
+		return err
+	}
+	if num > 0 {
+		goto DELETE
+	}
+	return tx.Commit()
+}
+
+// innerDeleteRange does a singel pass to delete the indexes (inclusively)
+func (m *MDBStore) innerDeleteRange(tx *mdb.Txn, dbis []mdb.DBI, minIdx, maxIdx uint64) (num int, err error) {
 	// Open a cursor
 	cursor, err := tx.CursorOpen(dbis[0])
 	if err != nil {
-		tx.Abort()
-		return err
+		return num, err
 	}
 
 	var key []byte
@@ -263,8 +279,7 @@ func (m *MDBStore) DeleteRange(minIdx, maxIdx uint64) error {
 		if err == mdb.NotFound {
 			break
 		} else if err != nil {
-			tx.Abort()
-			return err
+			return num, err
 		}
 
 		// Check if the key is in the range
@@ -278,12 +293,12 @@ func (m *MDBStore) DeleteRange(minIdx, maxIdx uint64) error {
 
 		// Attempt delete
 		if err := cursor.Del(0); err != nil {
-			tx.Abort()
-			return err
+			return num, err
 		}
 		didDelete = true
+		num++
 	}
-	return tx.Commit()
+	return num, nil
 }
 
 // Set a K/V pair
