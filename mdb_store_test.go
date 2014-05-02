@@ -218,7 +218,7 @@ func TestMDB_Logs(t *testing.T) {
 
 	// Verify they are all deleted
 	for i := 5; i <= 20; i++ {
-		if err := l.GetLog(uint64(i), &out); err != raft.LogNotFound {
+		if err := l.GetLog(uint64(i), &out); err != raft.ErrLogNotFound {
 			t.Fatalf("err: %v ", err)
 		}
 	}

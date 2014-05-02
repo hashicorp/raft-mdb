@@ -188,7 +188,7 @@ func (m *MDBStore) GetLog(index uint64, logOut *raft.Log) error {
 
 	val, err := tx.Get(dbis[0], key)
 	if err == mdb.NotFound {
-		return raft.LogNotFound
+		return raft.ErrLogNotFound
 	} else if err != nil {
 		return err
 	}
