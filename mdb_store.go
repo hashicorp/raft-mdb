@@ -276,7 +276,7 @@ func (m *MDBStore) innerDeleteRange(tx *mdb.Txn, dbis []mdb.DBI, minIdx, maxIdx 
 		} else {
 			key, _, err = cursor.Get(nil, mdb.NEXT)
 		}
-		if err == mdb.NotFound {
+		if err == mdb.NotFound || len(key) == 0 {
 			break
 		} else if err != nil {
 			return num, err
