@@ -270,7 +270,6 @@ func (m *MDBStore) innerDeleteRange(tx *mdb.Txn, dbis []mdb.DBI, minIdx, maxIdx 
 			// there is no further keys. We treat this as no more
 			// keys being found.
 			if num, ok := err.(mdb.Errno); ok && num == 22 {
-				println("errno 22")
 				err = mdb.NotFound
 			}
 		} else {
