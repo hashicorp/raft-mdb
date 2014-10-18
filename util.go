@@ -3,7 +3,7 @@ package raftmdb
 import (
 	"bytes"
 	"encoding/binary"
-	"github.com/ugorji/go/codec"
+	"github.com/hashicorp/go-msgpack/codec"
 )
 
 // Decode reverses the encode operation on a byte slice input
