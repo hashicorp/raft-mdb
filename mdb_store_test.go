@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-func MDBTestStore(t *testing.T) (string, *MDBStore) {
+func MDBTestStore(t testing.TB) (string, *MDBStore) {
 	// Create a test dir
 	dir, err := ioutil.TempDir("", "raft")
 	if err != nil {
