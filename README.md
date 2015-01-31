@@ -4,7 +4,7 @@ raft-mdb  [![Build Status](https://travis-ci.org/hashicorp/raft-mdb.png)](https:
 This repository provides the `raftmdb` package. The package exports the
 `MDBStore` which is an implementation of both a LogStore and StableStore.
 
-It is meant to be used as a backend for the `raft` [package here](github.com/hashicorp/raft).
+It is meant to be used as a backend for the `raft` [package here](http://github.com/hashicorp/raft).
 
 This implementation uses [LMDB](http://symas.com/mdb/). LMDB has a number
 of advantages to other embedded databases includes transactions, MVCC,
