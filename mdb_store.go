@@ -251,7 +251,7 @@ DELETE:
 	return tx.Commit()
 }
 
-// innerDeleteRange does a singel pass to delete the indexes (inclusively)
+// innerDeleteRange does a single pass to delete the indexes (inclusively)
 func (m *MDBStore) innerDeleteRange(tx *mdb.Txn, dbis []mdb.DBI, minIdx, maxIdx uint64) (num int, err error) {
 	// Open a cursor
 	cursor, err := tx.CursorOpen(dbis[0])
