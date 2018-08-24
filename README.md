@@ -12,7 +12,7 @@ and lack of compaction.
 
 The one disadvantage is because it is a C library, it requires the use
 of cgo which complicates cross compilation. For that reason, this is
-in a seperate package from `raft`, so that clients can avoid cgo if
+in a separate package from `raft`, so that clients can avoid cgo if
 they so choose.
 
 Documentation
