@@ -6,7 +6,7 @@ This repository provides the `raftmdb` package. The package exports the
 
 It is meant to be used as a backend for the `raft` [package here](https://github.com/hashicorp/raft).
 
-This implementation uses [LMDB](http://symas.com/mdb/). LMDB has a number
+This implementation uses [LMDB](http://symas.com/lmdb/). LMDB has a number
 of advantages to other embedded databases includes transactions, MVCC,
 and lack of compaction.
 
