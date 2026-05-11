@@ -1,3 +1,5 @@
+// Copyright IBM Corp. 2014, 2026
+
 package raftmdb
 
 import (
